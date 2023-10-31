@@ -17,7 +17,6 @@
   # example-package = pkgs.callPackage ./pkgs/example-package { };
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   logisim-ita = pkgs.callPackage ./pkgs/logisim-ita { };
-  distrho-ports = pkgs.callPackage ./pkgs/distrho-ports { };
-  thorium = pkgs.callPackage ./pkgs/distrho-ports { };
+  thorium = pkgs.callPackage ./pkgs/thorium { };
   # ...
 }
