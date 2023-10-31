@@ -39,7 +39,7 @@
   qt6,
   speechd,
   udev,
-  unrar,
+  _7zz,
   vaapiVdpau,
   vulkan-loader,
   wayland,
@@ -101,7 +101,8 @@ stdenv.mkDerivation rec {
     pipewire
     speechd
     udev
-    unrar
+    # unrar
+    _7zz
     vaapiVdpau
     vulkan-loader
     wayland
