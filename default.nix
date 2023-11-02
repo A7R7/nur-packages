@@ -18,5 +18,6 @@
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   logisim-ita = pkgs.callPackage ./pkgs/logisim-ita { };
   thorium-browser = pkgs.callPackage ./pkgs/thorium-browser { };
+  xenlism-grub-2k-nixos = pkgs.callPackage ./pkgs/xenlism-grub-2k-nixos { };
   # ...
 }
