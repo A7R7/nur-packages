@@ -20,5 +20,6 @@
   thorium-browser = pkgs.callPackage ./pkgs/thorium-browser { };
   xenlism-grub-2k-nixos = pkgs.callPackage ./pkgs/xenlism-grub-2k-nixos { };
   xenlism-grub-4k-nixos = pkgs.callPackage ./pkgs/xenlism-grub-4k-nixos { };
+  themix-gui = pkgs.callPackage ./pkgs/themix-gui { };
   # ...
 }
