@@ -22,5 +22,6 @@
   xenlism-grub-4k-nixos = pkgs.callPackage ./pkgs/xenlism-grub-4k-nixos { };
   themix-gui = pkgs.callPackage ./pkgs/themix-gui { };
   auctex = pkgs.callPackage ./pkgs/auctex { };
+  pix2tex = pkgs.callPackage ./pkgs/pix2tex { };
   # ...
 }
