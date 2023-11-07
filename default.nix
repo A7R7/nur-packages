@@ -7,7 +7,9 @@
 #     nix-build -A mypackage
 
 { pkgs ? import <nixpkgs> { } }:
-
+let
+  callPackage = pkgs.lib.callPackageWith (pkgs);
+in
 {
   # The `lib`, `modules`, and `overlay` names are special
   lib = import ./lib { inherit pkgs; }; # functions
@@ -16,12 +18,12 @@
 
   # example-package = pkgs.callPackage ./pkgs/example-package { };
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
-  logisim-ita = pkgs.callPackage ./pkgs/logisim-ita { };
-  thorium-browser = pkgs.callPackage ./pkgs/thorium-browser { };
-  xenlism-grub-2k-nixos = pkgs.callPackage ./pkgs/xenlism-grub-2k-nixos { };
-  xenlism-grub-4k-nixos = pkgs.callPackage ./pkgs/xenlism-grub-4k-nixos { };
-  themix-gui = pkgs.callPackage ./pkgs/themix-gui { };
-  auctex = pkgs.callPackage ./pkgs/auctex { };
-  pix2tex = pkgs.callPackage ./pkgs/pix2tex { };
+  logisim-ita = callPackage ./pkgs/logisim-ita { };
+  thorium-browser = callPackage ./pkgs/thorium-browser { };
+  xenlism-grub-2k-nixos = callPackage ./pkgs/xenlism-grub-2k-nixos { };
+  xenlism-grub-4k-nixos = callPackage ./pkgs/xenlism-grub-4k-nixos { };
+  themix-gui = callPackage ./pkgs/themix-gui { };
+  auctex = callPackage ./pkgs/auctex { };
+  pix2text = callPackage ./pkgs/pix2text { };
   # ...
 }
