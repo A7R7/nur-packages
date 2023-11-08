@@ -23,6 +23,9 @@ in
   xenlism-grub-4k-nixos = callPackage ./pkgs/xenlism-grub-4k-nixos { };
   themix-gui = callPackage ./pkgs/themix-gui { };
   auctex = callPackage ./pkgs/auctex { };
+  cnstd = callPackage ./pkgs/cnstd { };
+  cnocr = callPackage ./pkgs/cnocr { };
+  # pix2tex = callPackage ./pkgs/pix2tex { };
   pix2text = callPackage ./pkgs/pix2text { };
   # ...
 }

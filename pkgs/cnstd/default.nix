@@ -4,8 +4,8 @@
 }:
 with python3.pkgs;
 buildPythonPackage rec{
-  pname = "cnocr";
-  version = "2.2.4.2";
+  pname = "cnstd";
+  version = "1.2.3.5";
 
 
   src = fetchPypi {
