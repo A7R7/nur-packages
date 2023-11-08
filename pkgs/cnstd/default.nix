@@ -10,10 +10,15 @@ buildPythonPackage rec{
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-lPVsx2XoskTMbps81xjWOwJsyf4EtR3PCbw+QD0gTw4=";  
+    sha256 = "sha256-1wCej+eTNJeJR1umtih/KSgtwaJl06AK0CRjyo5Mqoo=";  
   };
 
   nativeBuildInputs = [ ];
+  propagatedBuildInputs = with pkgs.python311Packages; [ 
+    click tqdm pyyaml unidecode torch torchvision numpy scipy pandas 
+    pytorch-lightning pillow opencv4 shapely Polygon3 pyclipper matplotlib seaborn onnx
+    huggingface-hub
+  ];
 
   doCheck = false;
 

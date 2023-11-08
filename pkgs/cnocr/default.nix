@@ -1,6 +1,7 @@
 { lib
 , python3
 , fetchPypi
+, cnstd
 }:
 with python3.pkgs;
 buildPythonPackage rec{
@@ -14,7 +15,10 @@ buildPythonPackage rec{
   };
 
   nativeBuildInputs = [ ];
-
+  propagatedBuildInputs = with pkgs.python311Packages; [ 
+    click tqdm torch torchvision numpy pytorch-lightning wandb torchmetrics
+    pillow onnx cnstd
+  ];
   doCheck = false;
 
   meta = with lib; {

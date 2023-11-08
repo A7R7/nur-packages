@@ -10,7 +10,7 @@
 let
   callPackage = pkgs.lib.callPackageWith (pkgs);
 in
-{
+rec {
   # The `lib`, `modules`, and `overlay` names are special
   lib = import ./lib { inherit pkgs; }; # functions
   modules = import ./modules; # NixOS modules
@@ -23,9 +23,10 @@ in
   xenlism-grub-4k-nixos = callPackage ./pkgs/xenlism-grub-4k-nixos { };
   themix-gui = callPackage ./pkgs/themix-gui { };
   auctex = callPackage ./pkgs/auctex { };
+
   cnstd = callPackage ./pkgs/cnstd { };
-  cnocr = callPackage ./pkgs/cnocr { };
-  # pix2tex = callPackage ./pkgs/pix2tex { };
+  cnocr = callPackage ./pkgs/cnocr { inherit cnstd;  };
+  pix2tex = callPackage ./pkgs/pix2tex { };
   pix2text = callPackage ./pkgs/pix2text { };
   # ...
 }
