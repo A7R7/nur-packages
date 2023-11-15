@@ -28,5 +28,6 @@ rec {
   cnocr = callPackage ./pkgs/cnocr { inherit cnstd;  };
   pix2tex = callPackage ./pkgs/pix2tex { };
   pix2text = callPackage ./pkgs/pix2text { };
+  sarasa-gothic-nerd-font = callPackage ./pkgs/sarasa-gothic-nerd-font { };
   # ...
 }

@@ -66,7 +66,7 @@ buildPythonPackage rec{
     tqdm munch torch opencv4 requests einops transformers
     tokenizers numpy pillow
     pyyaml pandas albumentations
-     timm
+    timm
   ]) ++ [x-transformers];
   doCheck = false;
   postInstall = ''
@@ -78,4 +78,5 @@ buildPythonPackage rec{
     homepage = "https://github.com/breezedeus/Pix2Text";
     license = licenses.mit;
   };
+
 }
