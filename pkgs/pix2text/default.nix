@@ -1,6 +1,9 @@
 { lib
 , python3
 , fetchPypi
+, cnocr
+, cnstd
+, pix2tex
 }:
 with python3.pkgs;
 buildPythonPackage rec{
@@ -10,10 +13,13 @@ buildPythonPackage rec{
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "sha256-bPzGYEfuLihkiS4Bw34hN/hVtjJYibZIRiJYCip1++M=";  
+    sha256 = "sha256-bPzGYEfuLihkiS4Bw34hN/hVtjJYibZIRiJYCip1++M=";
   };
 
   nativeBuildInputs = [ ];
+  propagatedBuildInputs = (with pkgs.python3Packages; [
+    click numpy torch torchvision pillow opencv4 cnocr cnstd pix2tex
+  ]);
 
   doCheck = false;
 

@@ -28,6 +28,16 @@ let
     doCheck = false;
   };
 
+  timm = python3.pkgs.buildPythonPackage rec {
+    pname = "timm";
+    version = "0.5.4";
+    src = fetchPypi rec {
+      inherit pname version;
+      sha256 = "sha256-XXuS5mp2xDIAmrqQ1RXqeogqrlc0FafFJp42F9+QHB8=";
+    };
+   doCheck = false;
+  };
+
   image-resizer = fetchurl {
     url = "https://github.com/lukas-blecher/LaTeX-OCR/releases/download/v0.0.1/image_resizer.pth";
     sha256 = "sha256-HDggZZmFrRQrUmSQuyXCPZdxdqwgc1kbO92tppJxhFg=";
@@ -37,16 +47,6 @@ let
     sha256 = "sha256-pj2RQcU9Jmy2gvtai9g71cvigxReDnjr3A+JUZWh36o=";
   };
 
-  # 'timm==0.5.4',
-  # timm = python3.pkgs.buildPythonPackage rec {
-  #   pname = "timm";
-  #   version = "0.5.4";
-  #   src = fetchPypi rec {
-  #     inherit pname version;
-  #     sha256 = "sha256-XXuS5mp2xDIAmrqQ1RXqeogqrlc0FafFJp42F9+QHB8=";
-  #   };
-  #  doCheck = false;
-  # };
 in
 with python3.pkgs;
 buildPythonPackage rec{
@@ -63,12 +63,12 @@ buildPythonPackage rec{
 
   nativeBuildInputs = [ ];
   propagatedBuildInputs = (with pkgs.python3Packages; [
-    tqdm munch torch opencv4 requests einops transformers
-    tokenizers numpy pillow
-    pyyaml pandas albumentations
-    timm
-  ]) ++ [x-transformers];
+    tqdm munch torch torchvision opencv4 requests einops transformers
+    tokenizers numpy pillow pyyaml pandas albumentations
+  ]) ++ [timm x-transformers];
+
   doCheck = false;
+
   postInstall = ''
     ln -s ${image-resizer} $out/lib/python3.11/site-packages/pix2tex/model/checkpoints/image_resizer.pth
     ln -s ${weights} $out/lib/python3.11/site-packages/pix2tex/model/checkpoints/weights.pth
