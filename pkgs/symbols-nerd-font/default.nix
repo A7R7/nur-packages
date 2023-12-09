@@ -1,13 +1,11 @@
-{lib, stdenvNoCC, fetchFromGitHub}:
+{lib, stdenvNoCC, fetchgit}:
 
 stdenvNoCC.mkDerivation rec {
   pname = "symbols-nerd-font";
   version = "2.2.0";
-  src = fetchFromGitHub {
-    owner = "ryanoasis";
-    repo = "nerd-fonts";
-    rev = "FontPatcher";
-    sha256 = "ORQUN4oMxgf9y1K0cQqgiREefk6edbvmRFPQ5G4uKwo=";
+  src = fetchgit {
+    url = "https://github.com/ryanoasis/nerd-fonts.git";
+    sha256 = "sha256-BgsyMh/lGDx24J8S3fJuOZKbnJ6r6t9nDDSCxTQah3Q=";
     sparseCheckout = [
       "10-nerd-font-symbols.conf"
       "patched-fonts/NerdFontsSymbolsOnly"
@@ -24,7 +22,7 @@ stdenvNoCC.mkDerivation rec {
 
     fontdir="$out/share/fonts/truetype"
     install -d "$fontdir"
-    install "patched-fonts/NerdFontsSymbolsOnly/complete/Symbols-2048-em Nerd Font Complete.ttf" "$fontdir"
+    install "patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFont-Regular.ttf" "$fontdir"
 
     runHook postInstall
   '';
