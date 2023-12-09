@@ -9,6 +9,16 @@
 { pkgs ? import <nixpkgs> { } }:
 let
   callPackage = pkgs.lib.callPackageWith (pkgs);
+  patchFont = font: pkgs.stdenv.mkDerivation {
+    name = "${font.name}-nerd-font";
+    src = font;
+    nativeBuildInputs = [ pkgs.nerd-font-patcher ];
+    buildPhase = ''
+      find -name \*.ttf -o -name \*.otf -exec nerd-font-patcher -c {} \;
+    '';
+    installPhase = "cp -a . $out";
+  };
+
 in
 rec {
   # The `lib`, `modules`, and `overlay` names are special
@@ -29,7 +39,10 @@ rec {
   pix2tex = callPackage ./pkgs/pix2tex { };
   pix2text = callPackage ./pkgs/pix2text { inherit cnstd cnocr pix2tex; };
 
+  symbols-nerd-font = callPackage ./pkgs/symbols-nerd-font { };
   sarasa-gothic-nerd-font = callPackage ./pkgs/sarasa-gothic-nerd-font { };
+  ibm-plex-nerd-font = patchFont(pkgs.ibm-plex);
+  nerd-fonts = callPackage ./pkgs/nerd-fonts { };
   light = callPackage ./pkgs/lighttable { };
   # ...
 }
