@@ -16,7 +16,16 @@ let
     buildPhase = ''
       find -name \*.ttf -o -name \*.otf -exec nerd-font-patcher -c {} \;
     '';
-    installPhase = "cp -a . $out";
+    installPhase = ''
+    runHook preInstall
+
+    mkdir -p $out/share/fonts/truetype
+    mv $out/*.ttf $out/share/fonts/truetype
+    mkdir -p $out/share/fonts/opentype
+    mv $out/*.otf $out/share/fonts/opentype
+
+    runHook postInstall
+    '';
   };
 
 in
