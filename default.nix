@@ -45,4 +45,5 @@ rec {
   nerd-fonts = callPackage ./pkgs/nerd-fonts { };
   light = callPackage ./pkgs/lighttable { };
   # ...
+  tdlib = callPackage ./pkgs/tdlib { };
 }
