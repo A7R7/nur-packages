@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
     # The tdlib authors do not set tags for minor versions, but
     # external programs depending on tdlib constrain the minor
     # version, hence we set a specific commit with a known version.
-    rev = "85c8c19b7fddf4188a730486f05dcbf6bb855aab";
+    rev = "ec8863c3dfa53700434bbdf94344d9f4d8e55f3c";
     hash = "sha256-MCzgovcEZa34ZkwbbwfXHm2qitHwL2Tpr8p7+PxNhYk=";
   };
 
