@@ -3,6 +3,7 @@
 , fetchFromGitHub
 , meson
 , ninja
+, cmake
 , pkg-config
 , wayland
 , wrapGAppsHook
@@ -33,6 +34,7 @@ stdenv.mkDerivation (finalAttrs: {
   nativeBuildInputs = [
     meson
     ninja
+    cmake
     pkg-config
     wayland-scanner
     wrapGAppsHook

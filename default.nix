@@ -57,5 +57,7 @@ rec {
   tdlib = callPackage ./pkgs/tdlib { };
   jdtls = callPackage ./pkgs/jdtls { };
 
-  swayfire = callPackage ./pkgs/swayfire { };
+  wf-shell = pkgs.wayfirePlugins.wf-shell;
+  # wf-config = pkgs.wayfirePlugins.wf-config;
+  swayfire = callPackage ./pkgs/swayfire { inherit wf-shell; };
 }
