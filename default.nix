@@ -55,4 +55,7 @@ rec {
   light = callPackage ./pkgs/lighttable { };
   # ...
   tdlib = callPackage ./pkgs/tdlib { };
+  jdtls = callPackage ./pkgs/jdtls { };
+
+  swayfire = callPackage ./pkgs/swayfire { };
 }
