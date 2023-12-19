@@ -58,6 +58,6 @@ rec {
   jdtls = callPackage ./pkgs/jdtls { };
 
   wf-shell = pkgs.wayfirePlugins.wf-shell;
-  # wf-config = pkgs.wayfirePlugins.wf-config;
-  swayfire = callPackage ./pkgs/swayfire { inherit wf-shell; };
+  wayfire = callPackage ./pkgs/wayfire { };
+  swayfire = callPackage ./pkgs/wayfire/swayfire.nix { inherit wf-shell; };
 }
