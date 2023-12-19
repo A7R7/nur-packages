@@ -26,14 +26,14 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "wayfire";
-  version = "0.8.0";
+  version = "0.8.0-prev-output";
 
   src = fetchFromGitHub {
     owner = "A7R7";
     repo = "wayfire";
-    rev = "e86484484af4530759b5d6e410a7e47924923d04";
+    rev = "6d6776df3d2510eecfbddd089be0a6eb56dad005";
     fetchSubmodules = true;
-    hash = "sha256-Ssl1Dy5J3EZhEfYN2TqXr3adC2qOlBAoZzDB1bYclx4=";
+    hash = "sha256-/pf02rGcSiCynOyFBZwugXcAb758IHGEghAfsN4SNPQ=";
   };
 
   nativeBuildInputs = [
