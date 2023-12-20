@@ -31,9 +31,9 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "A7R7";
     repo = "wayfire";
-    rev = "6d6776df3d2510eecfbddd089be0a6eb56dad005";
+    rev = "47db4dc1df2b737a0159123135330c14415ccb00";
     fetchSubmodules = true;
-    hash = "sha256-/pf02rGcSiCynOyFBZwugXcAb758IHGEghAfsN4SNPQ=";
+    hash = "sha256-lRRl3yLRH6DlV5thWusiAjjdI6MIrOsUD/4LP0ay/Wo=";
   };
 
   nativeBuildInputs = [
