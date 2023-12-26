@@ -60,4 +60,6 @@ rec {
   wf-shell = pkgs.wayfirePlugins.wf-shell;
   wayfire = callPackage ./pkgs/wayfire { };
   swayfire = callPackage ./pkgs/wayfire/swayfire.nix { inherit wf-shell; };
+
+  clash-verge-rev = callPackage ./pkgs/clash-verge-rev { };
 }

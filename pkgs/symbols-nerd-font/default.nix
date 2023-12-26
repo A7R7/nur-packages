@@ -5,7 +5,7 @@ stdenvNoCC.mkDerivation rec {
   version = "2.2.0";
   src = fetchgit {
     url = "https://github.com/ryanoasis/nerd-fonts.git";
-    sha256 = "sha256-BgsyMh/lGDx24J8S3fJuOZKbnJ6r6t9nDDSCxTQah3Q=";
+    sha256 = "";
     sparseCheckout = [
       "10-nerd-font-symbols.conf"
       "patched-fonts/NerdFontsSymbolsOnly"
