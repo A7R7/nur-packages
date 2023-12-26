@@ -13,11 +13,11 @@
 
 stdenv.mkDerivation rec {
   pname = "clash-verge";
-  version = "1.3.8";
+  version = "1.4.5";
 
   src = fetchurl {
     url = "https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v${version}/clash-verge_${version}_amd64.deb";
-    hash = "sha256-kOju4yaa+EKzFWDrk0iSJVoWkQMBjQG3hKLfAsqlsa8=";
+    hash = "sha256-FzQ534+XNtTiVf6qSAkxxwYbiJ/WsXZejMsx1M5N7r0=";
   };
 
   nativeBuildInputs = [
@@ -42,7 +42,7 @@ stdenv.mkDerivation rec {
 
     mkdir -p $out/bin
     mv usr/* $out
-    rm $out/bin/{clash,clash-meta}
+    rm $out/bin/clash-meta
 
     runHook postInstall
   '';
