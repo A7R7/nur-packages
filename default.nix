@@ -61,5 +61,5 @@ in rec {
   swayfire = callPackage ./pkgs/wayfire/swayfire.nix { inherit wf-shell; };
 
   clash-verge-rev = callPackage ./pkgs/clash-verge-rev { };
-  gwe = callPackage ./pkgs/gwe { nvidia_x11 = pkgs.linuxPackages.nvidia_x11; };
+  mogan = callPackage ./pkgs/mogan { };
 }
