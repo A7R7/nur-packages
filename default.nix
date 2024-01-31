@@ -61,5 +61,5 @@ in rec {
   swayfire = callPackage ./pkgs/wayfire/swayfire.nix { inherit wf-shell; };
 
   clash-verge-rev = callPackage ./pkgs/clash-verge-rev { };
-  mogan = callPackage ./pkgs/mogan { };
+  mogan = callPackage ./pkgs/mogan/mogan-bin { };
 }

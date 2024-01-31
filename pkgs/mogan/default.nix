@@ -1,77 +1,107 @@
-{
-lib,
-stdenv,
-fetchurl,
-dpkg,
-openssl,
-libpng,
-libjpeg,
-fontconfig,
-freetype,
-gawk,
-zlib,
-curl,
-libgit2,
-glibc,
-pango,
-cairo,
-qt6
+{ lib
+, stdenv
+, fetchFromGitHub
+, substituteAll
+, xmake
+, cmake
+, pkg-config
+, qt6
+, curl
+, freetype
+, zlib
+, bzip2
+, libpng
+, libjpeg
+, brotli
+, libiconv
+, pdfhummus
+, git
+, unzip
+, ghostscript
 }:
 
 stdenv.mkDerivation rec {
-  name = "mogan-research";
-  version = "1.2.2";
-  src = fetchurl {
-    url = "https://github.com/XmacsLabs/mogan/releases/download/v${version}/mogan-research-v${version}-ubuntu22.04.deb";
-    sha256 = "dc9f3d1e18afb4f27b598c8251815ad1082f14c58e6685e218965c63e6d19151";
+  pname = "mogan";
+  version = "1.2.3";
+
+  src = fetchFromGitHub {
+    owner = "XmacsLabs";
+    repo = pname;
+    rev = "v${version}";
+    hash = "sha256-RtXWIhAu8QvWtzqZP5c4m/zSrW3a7r9nVL7qVrDQqxc=";
   };
 
-  nativeBuildInputs = [
-    dpkg
+  patches = [
+    ./use-system-lib.patch
+    (substituteAll {
+      src = ./patch-ghostscript-path.diff;
+      inherit ghostscript;
+      ghostscriptVersion = ghostscript.version;
+    })
   ];
 
-  # buildInputs = [
-  #   hicolor-icon-theme
-  # ];
+  postPatch = ''
+    substituteInPlace src/Plugins/Freetype/free_type.cpp \
+      --replace "/usr/lib/libfreetype" "${freetype}/lib/libfreetype"
+  '';
 
-  runtimeDependencies = [
-    openssl
-    libpng
-    libjpeg
-    fontconfig
-    freetype
-    gawk
-    zlib
-    curl
-    libgit2
-    glibc
-    pango
-    cairo
+  nativeBuildInputs = [
+    xmake
+    cmake
+    pkg-config
+  ];
+
+  dontUseCmakeConfigure = true;
+
+  buildInputs = [
     qt6.qtbase
     qt6.qtsvg
     qt6.qtwayland
+    curl
+    freetype
+    zlib
+    bzip2
+    libpng
+    libjpeg
+    brotli
+    libiconv
+    pdfhummus
+    # make xmake happly
+    git
+    unzip
   ];
 
+  configurePhase = ''
+    runHook preConfigure
+    export HOME=$(mktemp -d)
+    xmake global --network=private
+    xmake config -m release --verbose --yes --diagnosis
+    runHook postConfigure
+  '';
+
+  buildPhase = ''
+    runHook preBuild
+    xmake build --yes --verbose --all -j $NIX_BUILD_CORES
+    runHook postBuild
+  '';
+
+  env.NIX_CFLAGS_COMPILE = toString [
+    "-I${lib.getDev qt6.qtsvg}/include/QtSvg"
+    #"-L${pdfhummus}/lib"
+    "-lLibAesgm" "-lPDFWriter"
+  ];
 
   installPhase = ''
     runHook preInstall
-
-    mkdir -p $out
-    mv usr/* $out
-    rmdir usr/
-
-    runHook autoPatchelf
-
+    xmake install -o $out mogan_install
     runHook postInstall
   '';
 
-  meta = with lib; {
-    description = "A structured STEM suite delivered by Xmacs Labs";
-    homepage = "https://mogan.app/";
-    platforms = [ "x86_64-linux" ];
-    license = licenses.gpl3Plus;
-    sourceProvenance = with sourceTypes; [ binaryNativeCode ];
-    mainProgram = "MoganResearch";
+  meta = {
+    description = "A structure editor delivered by Xmacs Labs";
+    homepage    = "https://mogan.app";
+    license     = lib.licenses.gpl3Plus;
+    platforms   = lib.platforms.all;
+    maintainers = with lib.maintainers; [ rewine ];
   };
-
 }
