@@ -61,5 +61,17 @@ in rec {
   swayfire = callPackage ./pkgs/wayfire/swayfire.nix { inherit wf-shell; };
 
   clash-verge-rev = callPackage ./pkgs/clash-verge-rev { };
-  mogan = callPackage ./pkgs/mogan/mogan-bin { };
+  mogan = callPackage ./pkgs/mogan/mogan-bin.nix { };
+  emacs = pkgs.emacs-pgtk.overrideAttrs(old: {
+    patches = [
+      ./pkgs/emacs/transparency.patch
+      # ./pkgs/emacs/fast-json.patch
+    ];
+  });
+
+  dingtalk = callPackage ./pkgs/dingtalk { };
+  jan = callPackage ./pkgs/jan { };
+
+  coolercontrol = callPackage ./pkgs/coolercontrol/coolercontrol.nix { };
+  coolercontrold = callPackage ./pkgs/coolercontrol/coolercontrold.nix { };
 }

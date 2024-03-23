@@ -1,7 +1,10 @@
 {
   description = "My personal NUR repository";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  outputs = { self, nixpkgs }:
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    emacs.url = "github:nix-community/emacs-overlay";
+  };
+  outputs = inputs@{ self, nixpkgs, ...}:
     let
       systems = [
         "x86_64-linux"
@@ -18,6 +21,9 @@
         pkgs = import nixpkgs {
           inherit system;
           config.allowUnfree = true;
+          overlays = with inputs; [
+            emacs.overlay
+          ];
         };
       });
       packages = forAllSystems (system: nixpkgs.lib.filterAttrs (_: v: nixpkgs.lib.isDerivation v) self.legacyPackages.${system});
