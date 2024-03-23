@@ -60,7 +60,7 @@ in rec {
   wayfire = callPackage ./pkgs/wayfire { };
   swayfire = callPackage ./pkgs/wayfire/swayfire.nix { inherit wf-shell; };
 
-  # clash-verge-rev = callPackage ./pkgs/clash-verge-rev { };
+  clash-verge-rev = callPackage ./pkgs/clash-verge-rev { };
   mogan = callPackage ./pkgs/mogan/mogan-bin.nix { };
   emacs = pkgs.emacs-pgtk.overrideAttrs(old: {
     patches = [
