@@ -72,6 +72,7 @@ in rec {
   dingtalk = callPackage ./pkgs/dingtalk { };
   jan = callPackage ./pkgs/jan { };
 
+  harmoniod = callPackage ./pkgs/harmoniod { }; # failed
   # coolercontrol = callPackage ./pkgs/coolercontrol/coolercontrol.nix { };
   # coolercontrold = callPackage ./pkgs/coolercontrol/coolercontrold.nix { };
 }
